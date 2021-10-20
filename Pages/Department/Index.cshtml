@@ -1,0 +1,48 @@
+@page
+@model hrmProject.Pages_Department.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Phòng ban </h1>
+
+<p>
+    <a asp-page="Create">Thêm phòng ban</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Department[0].Department_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department[0].HomeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department[0].Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Department) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Department_id">Sửa</a> |
+                <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.Department_id">Chi tiết</a> |
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Department_id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

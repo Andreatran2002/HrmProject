@@ -1,0 +1,44 @@
+.btn-style {
+    background-color: #dbe4ea;
+    color: #6c7a86;
+    border: none;
+}
+
+.btn-style:hover {
+    background-color: #16b4fc;
+    border-color: #16b4fc;
+    color: white;
+}
+
+.btn-font {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.a-none {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+@media(max-width: 800px) {
+    .form-inline .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+}
+
+#upload-file {
+    display: none;
+}
+
+.upp {
+    font-size: 80px
+}
+
+#container {
+    margin: 0px 0px 0px 0px;
+    border: rgb(187, 207, 207) solid 1px;
+    text-align: center;
+    padding: 20px;
+}
