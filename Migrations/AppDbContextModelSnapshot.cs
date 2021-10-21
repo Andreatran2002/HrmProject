@@ -38,6 +38,10 @@ namespace hrmProject.Migrations
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("EducationId")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -104,6 +108,8 @@ namespace hrmProject.Migrations
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("EducationId");
+
                     b.HasIndex("JobId");
 
                     b.HasIndex("NormalizedEmail")
@@ -137,6 +143,24 @@ namespace hrmProject.Migrations
                     b.HasKey("Department_id");
 
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("App.Models.Education", b =>
+                {
+                    b.Property<string>("EducationId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("EducationName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Specialization")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("EducationId");
+
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("App.Models.Job", b =>
@@ -317,11 +341,17 @@ namespace hrmProject.Migrations
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
+                    b.HasOne("App.Models.Education", "education")
+                        .WithMany()
+                        .HasForeignKey("EducationId");
+
                     b.HasOne("App.Models.Job", "job")
                         .WithMany()
                         .HasForeignKey("JobId");
 
                     b.Navigation("department");
+
+                    b.Navigation("education");
 
                     b.Navigation("job");
                 });

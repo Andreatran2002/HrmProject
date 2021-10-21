@@ -34,6 +34,7 @@ namespace App.Models{
         public DbSet<Post> Posts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Education> Educations { get; set; }
 
     }
 }

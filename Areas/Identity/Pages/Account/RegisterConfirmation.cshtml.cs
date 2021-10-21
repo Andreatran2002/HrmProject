@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using System.Threading.Tasks;
-using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using App.Models;
 
 namespace hrmProject.Areas.Identity.Pages.Account
 {

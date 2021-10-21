@@ -6,19 +6,21 @@ namespace App.Models{
     // [Table("Salarys")]
     public class Salary{
         [Key]
-        public string Id { get; set; }
-        [StringLength(255,MinimumLength =5,ErrorMessage="{0} phải dài từ {2} đến {1}")]
+        [Display(Name="Bậc lương")]
+        public int Salary_scale{ get; set; }
+        
         [Required(ErrorMessage ="{0} phải nhập")]
-        [Display(Name="Tiêu đề")]
+        [Display(Name="Lương cơ bản")]
         [Column(TypeName = "nvarchar")]
-        public string Title { get; set; }
-        [DataType(DataType.Date)]
+        public int Basic_salary { get; set; }
+
+
         [Required]
-        [Display(Name="Ngày tạo")]
-        public DateTime Created { get; set; }
+        [Display(Name="Hệ số lương")]
+        public int Coe_salary { get; set; }
         [Column(TypeName = "ntext")]
         [Display(Name="Nội dung")]
-        public string Content { get; set;}
+        public int Allowance_coe { get; set;}
         
         public string UserId {set; get;}
         [ForeignKey("UserId")]

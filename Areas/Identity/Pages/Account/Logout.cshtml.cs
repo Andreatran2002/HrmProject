@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-
+    
 namespace hrmProject.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
@@ -37,7 +37,9 @@ namespace hrmProject.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage();
+                returnUrl = Url.Content("~/");
+                return LocalRedirect(returnUrl);
+                // return RedirectToPage();
             }
         }
     }

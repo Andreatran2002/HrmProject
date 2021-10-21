@@ -23,12 +23,12 @@ namespace App.Models
 
         [Display(Name="Giới tính")]
         [Column(TypeName = "nvarchar")]
-        public string? Sex { get; set; }
+        public string Sex { get; set; }
 
         [Display(Name="Tôn giáo")]
         [Column(TypeName="nvarchar")]
         [StringLength(400)]
-        public string? Religion{set;get;}
+        public string Religion{set;get;}
 
         [Column(TypeName="nvarchar")]
         [StringLength(450)]

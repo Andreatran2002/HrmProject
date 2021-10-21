@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using App.Models;
+using App.Security.Requirements;
+using App.Services;
+using hrmProject.Mail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +32,14 @@ namespace hrmProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Đk dịch vụ email 
+            services.AddOptions();
+            var mailSettings = Configuration.GetSection("MailSettings");
+            services.Configure<MailSettings>(mailSettings);
+
+            services.AddSingleton<IEmailSender, SendMailService>();
+
             services.AddRazorPages();
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -60,12 +73,23 @@ namespace hrmProject
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;  // Email là duy nhất
 
-                // Cấu hình đăng nhập.
+                // Cấu hình đăng nhập. 
                 options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
                 options.SignIn.RequireConfirmedAccount = true;
 
             });
+
+            services.ConfigureApplicationCookie(option =>
+            {
+                option.LoginPath = "/login";
+                option.LogoutPath = "/logout";
+                option.AccessDeniedPath = "/accessdenied.html";
+            });
+
+            services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+
+            services.AddTransient<IAuthorizationHandler,AppAuthorizationHandler>(); 
 
 
         }
@@ -99,3 +123,5 @@ namespace hrmProject
         }
     }
 }
+
+//dotnet aspnet-codegenerator razorpage -m App.Models.Post -dc App.Models.AppDbContext -outDir Pages/Post -udl --referenceScriptLibraries
