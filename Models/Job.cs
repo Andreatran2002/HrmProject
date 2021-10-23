@@ -6,6 +6,7 @@ namespace App.Models{
     // [Table("Job")]
     public class Job{
         [Key]
+        [Display(Name="Mã chức vụ")]
         public string JobId { get; set; }
 
 

@@ -18,12 +18,12 @@ namespace hrmProject.Pages_List
             _context = context;
         }
 
-        public IList<Post> Post { get;set; }
+        public IList<AppUser> Users { get;set; }
+    
 
         public async Task OnGetAsync()
         {
-            Post = await _context.Posts
-                .Include(p => p.User).ToListAsync();
+            Users = await _context.Users.ToListAsync();
         }
     }
 }

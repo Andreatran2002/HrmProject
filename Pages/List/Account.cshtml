@@ -2,49 +2,35 @@
 @model hrmProject.Pages_List.AccountModel
 
 @{
-    ViewData["Title"] = "Danh sách nhân viên";
+    ViewData["Title"] = "Danh sách tài khoản ";
+    int i = 1; 
 }
 
-<h1>Danh sách nhân viên </h1>
+<h1>Danh sách tài khoản  </h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Title)
+                Số thứ tự
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Post[0].Created)
+                @Html.DisplayNameFor(model => model.Users[0].UserName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Post[0].User)
-            </th>
-            <th></th>
+            
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Post) {
+@foreach (var item in Model.Users) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @i++; 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Created)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+            
+            
         </tr>
 }
     </tbody>

@@ -2,13 +2,12 @@
 @model hrmProject.Pages_Job.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết chức vụ";
 }
 
-<h1>Details</h1>
+<h1>Thông tin chức vụ : @Model.Job.JobName</h1>
 
 <div>
-    <h4>Job</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -20,6 +19,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Job.JobId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Job.JobId">Sửa</a> |
+    <a asp-page="./Index">Quay lại danh sách</a>
 </div>

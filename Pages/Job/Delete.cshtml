@@ -2,12 +2,11 @@
 @model hrmProject.Pages_Job.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa chức vụ";
 }
 
-<h1>Delete</h1>
+<h1>Xóa chức vụ : @Model.Job.JobName</h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Job</h4>
     <hr />
@@ -22,7 +21,7 @@
     
     <form method="post">
         <input type="hidden" asp-for="Job.JobId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay lại danh sách </a>
     </form>
 </div>

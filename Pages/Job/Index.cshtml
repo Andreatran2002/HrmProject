@@ -5,14 +5,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Danh sách các chức vụ </h1>
+@* <h3>Tổng số chức vụ :</h3> *@
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Thêm chức vụ</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].JobId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Job[0].JobName)
             </th>
@@ -23,12 +27,15 @@
 @foreach (var item in Model.Job) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.JobName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.JobId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.JobId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.JobId">Delete</a>
+                <a class="btn btn-primary"asp-page="./Edit" asp-route-id="@item.JobId">Sửa</a> |
+                <a class="btn btn-success"asp-page="./Details" asp-route-id="@item.JobId">Chi tiết</a> |
+                <a class="btn btn-danger"asp-page="./Delete" asp-route-id="@item.JobId">Xóa</a>
             </td>
         </tr>
 }

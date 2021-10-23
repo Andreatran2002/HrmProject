@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using App.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace hrmProject.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize(Roles = "Admin")]
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<AppUser> _userManager;
@@ -76,7 +78,7 @@ namespace hrmProject.Areas.Identity.Pages.Account.Manage
                 Hometown = user.Hometown,
                 Sex= user.Sex,
                 Religion = user.Religion,
-                
+
 
 
             };

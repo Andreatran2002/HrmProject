@@ -88,8 +88,41 @@ namespace hrmProject
             });
 
             services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+            // Trên 30 giây truy cập lại sẽ nạp lại thông tin User (Role)
+            // SecurityStamp trong bảng Use r đổi -> nạp lại thông tinn Security
+            options.ValidationInterval = TimeSpan.FromSeconds(30);});
+            // services.AddAuthorization(option =>{
+            //     option.AddPolicy("AllowEditRole",policyBuilder=>
+            //     {
+            //         //Điều kiện của policyBuilder
+            //         policyBuilder.RequireAuthenticatedUser();
+            //         policyBuilder.RequireRole("Admin"); 
+            //         // policyBuilder.RequireRole("Editor");
 
+            //         policyBuilder.RequireClaim("allowEdit","role");
+
+            //         // policyBuilder.RequireClaim("TenClaim",new string[]{"giatri1","giatri2"})
+            //         // IdentityRoleClaim<string> claim1; 
+            //         // IdentityUserClaim<string> claim2;
+            //         // Claim claim;  
+            //     });
+            //      option.AddPolicy("Genz",policyBuilder=>
+            //     {
+            //        policyBuilder.RequireAuthenticatedUser(); 
+            //        policyBuilder.Requirements.Add(new GenZRequirement());
+            //        // new GenzRequirement() -> Authorization handler
+            //        // Reqirement chỉ khai báo các thành phần có . Nên cần phải kiểm tra thông qua auth handler
+            //     });
+            //     option.AddPolicy("ShowAdminMenu",policyBuilder=>
+            //     {
+            //         policyBuilder.RequireRole("Admin");
+            //     });
+                
+            // }); 
             services.AddTransient<IAuthorizationHandler,AppAuthorizationHandler>(); 
+
 
 
         }
