@@ -31,8 +31,8 @@ namespace hrmProject.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage="Cần phải nhập {0}")]
-            [EmailAddress(ErrorMessage="Nhập sai định dạng email")]
+            [Required]
+            [EmailAddress]
             public string Email { get; set; }
         }
 

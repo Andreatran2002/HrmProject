@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App.Models
 {
@@ -51,6 +52,8 @@ namespace App.Models
 
         [ForeignKey("EducationId")]
         public Education education{set;get;}
+
+        public string Avatar { get; set; }
 
         
 

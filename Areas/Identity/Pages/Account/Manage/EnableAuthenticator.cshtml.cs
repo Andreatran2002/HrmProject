@@ -149,7 +149,7 @@ namespace hrmProject.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("entity_fr"),
+                _urlEncoder.Encode("hrmProject"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

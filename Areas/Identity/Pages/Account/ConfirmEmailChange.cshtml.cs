@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using App.Models;
 using Microsoft.AspNetCore.Authorization;
+using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -41,8 +41,6 @@ namespace hrmProject.Areas.Identity.Pages.Account
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var oldEmail = user.Email;
-
             var result = await _userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
@@ -52,17 +50,12 @@ namespace hrmProject.Areas.Identity.Pages.Account
 
             // In our UI email and user name are one and the same, so when we update the email
             // we need to update the user name.
-
-            if (user.UserName == oldEmail)
+            var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
+            if (!setUserNameResult.Succeeded)
             {
-                var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
-                if (!setUserNameResult.Succeeded)
-                {
-                    StatusMessage = "Error changing user name.";
-                    return Page();
-                }
+                StatusMessage = "Error changing user name.";
+                return Page();
             }
-
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Thank you for confirming your email change.";
